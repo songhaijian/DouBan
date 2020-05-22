@@ -1,6 +1,5 @@
 <template>
 	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
 		<view class="text-area">
 			<text class="title">{{title}}</text>
 		</view>
@@ -11,11 +10,14 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				title: 'Hello1111'
 			}
 		},
 		onLoad() {
 
+		},
+		onReady() {
+			this.$store.dispatch("getCity")
 		},
 		methods: {
 
