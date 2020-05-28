@@ -11,13 +11,16 @@
 		}, {
 			"path": "pages/movie-list/movie-list",
 			"style": {
-				
+
 			}
 		}, {
 			"path": "pages/movie-detail/movie-detail",
 			"style": {
-
+				"navigationBarTitleText": ""
 			}
+		}, {
+			"path": "pages/move-sort/move-sort",
+			"style": {}
 		}
 	],
 	"globalStyle": {

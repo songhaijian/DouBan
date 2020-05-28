@@ -43,6 +43,9 @@
 					url: "https://douban-api.uieee.com/v2/movie/subject/" + id
 				}).then(res => {
 					this.detailObj = res
+					uni.setNavigationBarTitle({
+						title: res.title
+					})
 				})
 			}
 		}

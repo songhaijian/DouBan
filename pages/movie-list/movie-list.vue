@@ -6,13 +6,13 @@
 			</swiper-item>
 		</swiper>
 		<!-- 正在上映的电影 -->
-		<view class="list_wrap">
-			<view class="title_wrap">
+		<view class="list_wrap" v-if="Object.keys(getNowPlayList).length!=0">
+			<view class="title_wrap" @click="handleSortList(getNowPlayList.title)">
 				{{getNowPlayList.title}}
+				<text>></text>
 			</view>
 			<scroll-view scroll-x="true" class="list_sc">
-				<view class="item_list" v-if="Object.keys(getNowPlayList).length!=0" v-for="(item,index) in getNowPlayList.subjects"
-				 :key="index" @click="handleDetail(item.id)">
+				<view class="item_list" v-for="(item,index) in getNowPlayList.subjects" :key="index" @click="handleDetail(item.id)">
 					<image :src="item.images.small" mode="aspectFill"></image>
 					<view class="item_title">
 						{{item.title}}
@@ -21,13 +21,13 @@
 			</scroll-view>
 		</view>
 		<!-- 即将上映的电影 -->
-		<view class="list_wrap">
-			<view class="title_wrap">
+		<view class="list_wrap" v-if="Object.keys(getComingSoonList).length!=0">
+			<view class="title_wrap" @click="handleSortList(getComingSoonList.title)">
 				{{getComingSoonList.title}}
+				<text>></text>
 			</view>
 			<scroll-view scroll-x="true" class="list_sc">
-				<view class="item_list" v-if="Object.keys(getComingSoonList).length!=0" v-for="(item,index) in getComingSoonList.subjects"
-				 :key="index" @click="handleDetail(item.id)">
+				<view class="item_list" v-for="(item,index) in getComingSoonList.subjects" :key="index" @click="handleDetail(item.id)">
 					<image :src="item.images.small" mode="aspectFill"></image>
 					<view class="item_title">
 						{{item.title}}
@@ -36,13 +36,13 @@
 			</scroll-view>
 		</view>
 		<!-- 豆瓣电影新片榜 -->
-		<view class="list_wrap">
-			<view class="title_wrap">
+		<view class="list_wrap" v-if="Object.keys(getNewList).length!=0">
+			<view class="title_wrap" @click="handleSortList(getNewList.title)">
 				{{getNewList.title}}
+				<text>></text>
 			</view>
 			<scroll-view scroll-x="true" class="list_sc">
-				<view class="item_list" v-if="Object.keys(getNewList).length!=0" v-for="(item,index) in getNewList.subjects" :key="index"
-				 @click="handleDetail(item.id)">
+				<view class="item_list" v-for="(item,index) in getNewList.subjects" :key="index" @click="handleDetail(item.id)">
 					<image :src="item.images.small" mode="aspectFill"></image>
 					<view class="item_title">
 						{{item.title}}
@@ -51,13 +51,13 @@
 			</scroll-view>
 		</view>
 		<!-- top250电影榜 -->
-		<view class="list_wrap">
-			<view class="title_wrap">
+		<view class="list_wrap" v-if="Object.keys(getTop250).length!=0">
+			<view class="title_wrap" @click="handleSortList(getTop250.title)">
 				{{getTop250.title}}
+				<text>></text>
 			</view>
 			<scroll-view scroll-x="true" class="list_sc">
-				<view class="item_list" v-if="Object.keys(getTop250).length!=0" v-for="(item,index) in getTop250.subjects" :key="index"
-				 @click="handleDetail(item.id)">
+				<view class="item_list" v-for="(item,index) in getTop250.subjects" :key="index" @click="handleDetail(item.id)">
 					<image :src="item.images.small" mode="aspectFill"></image>
 					<view class="item_title">
 						{{item.title}}
@@ -85,6 +85,11 @@
 			handleDetail(id) {
 				uni.navigateTo({
 					url: "/pages/movie-detail/movie-detail?id=" + id
+				})
+			},
+			handleSortList(title) {
+				uni.navigateTo({
+					url: "/pages/move-sort/move-sort?title=" + title
 				})
 			}
 		},
@@ -127,6 +132,11 @@
 				color: #fff;
 				margin-left: 20upx;
 				padding: 10upx 0;
+
+				text {
+					margin-right: 20upx;
+					float: right;
+				}
 			}
 
 			.list_sc {
